@@ -24,6 +24,13 @@ const getDatas = asyncHandler(async (req, res) => {
   // const goal = await Goal.find();
   const redisCli = redisClient.v4;
   const redisData = await redisCli.get('data');
+
+  setTimeout(async () => {
+    await Goal.create({
+      text: "한시간뒤 바뀐값!!!!!"
+    });
+  }, 3600000);
+
   res.status(200).json(JSON.parse(redisData));
 });
 
