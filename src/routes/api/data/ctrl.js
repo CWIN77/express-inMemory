@@ -13,7 +13,11 @@ const setData = asyncHandler(async (req, res) => {
 });
 
 const getDatas = asyncHandler(async (req, res) => {
+  if (!fs.existsSync('./IMDB.json')) {
+    fs.writeFileSync('./IMDB.json', JSON.stringify({ data: [] }));
+  }
   const { data } = JSON.parse(fs.readFileSync('./IMDB.json').toString());
+
   res.status(200).json(data);
 });
 
