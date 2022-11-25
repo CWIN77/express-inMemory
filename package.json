@@ -19,7 +19,9 @@
     "dotenv": "latest",
     "express": "latest",
     "express-async-handler": "latest",
-    "helmet": "latest"
+    "helmet": "latest",
+    "mongoose": "^6.7.3",
+    "redis": "^4.5.1"
   },
   "devDependencies": {
     "nodemon": "latest"
