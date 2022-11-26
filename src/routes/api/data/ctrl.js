@@ -15,7 +15,7 @@ const setData = asyncHandler(async (req, res) => {
   const redisData = await redisCli.get('data');
   const { data } = JSON.parse(redisData);
   data.push({ text: req.body.text });
-  await redisCli.set('data', JSON.stringify(data));
+  await redisCli.set('data', JSON.stringify({ data }));
 
   res.status(200).json("임시값");
 });
@@ -24,12 +24,6 @@ const getDatas = asyncHandler(async (req, res) => {
   // const goal = await Goal.find();
   const redisCli = redisClient.v4;
   const redisData = await redisCli.get('data');
-
-  setTimeout(async () => {
-    await Goal.create({
-      text: "한시간뒤 바뀐값!!!!!"
-    });
-  }, 3600000);
 
   res.status(200).json(JSON.parse(redisData));
 });
